@@ -29,21 +29,15 @@
         <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-6">
           <div class="flex flex-col items-center space-y-1">
-            <ShoppingCartIcon class="h-15 w-15 text-gray-700" id="SmallTransform" />
+              <ShoppingCartIcon class="h-15 w-15 text-gray-700 small-transform"/>
             <a href="/dashboard" class="text-gray-600 hover:text-black text-sm">Bestellingen</a>
           </div>
           <div class="flex flex-col items-center space-y-1">
-            <img
-                src="./media/warehouse.png"
-                alt="warehouse"
-                class="h-15 w-15 object-contain"
-                id="SmallTransform"
-                ref="logo"
-            />
+            <ArchiveBoxIcon class="h-15 w-15 text-gray-700 small-transform"/>
             <a href="/pages" class="text-gray-600 hover:text-black">Magazijn</a>
           </div>
           <div class="flex flex-col items-center space-y-1">
-            <UserIcon class="h-15 w-15 text-gray-700" id="SmallTransform" />
+            <UserIcon class="h-15 w-15 text-gray-700 small-transform" />
             <a href="/users" class="text-gray-600 hover:text-black">Account</a>
           </div>
         </div>
@@ -63,17 +57,17 @@
     <div class="flex justify-center space-x-8">
       <!-- Marketing   -->
       <div class="flex flex-col items-center space-y-1">
-        <megaphone-icon class="h-15 w-15 text-gray-700 mt-20 mx-auto" id="SmallTransform"></megaphone-icon>
+        <MegaphoneIcon class="h-15 w-15 text-gray-700 mt-20 mx-auto small-transform"></MegaphoneIcon>
         <a href="/dashboard" class="text-gray-600 hover:text-black text-sm">Marketing</a>
       </div>
       <!-- Account -->
       <div class="flex flex-col items-center space-y-1">
-        <UserIcon class="h-15 w-15 text-gray-700 mt-20 mx-auto" id="SmallTransform"></UserIcon>
+        <UserIcon class="h-15 w-15 text-gray-700 mt-20 mx-auto small-transform"></UserIcon>
         <a href="/dashboard" class="text-gray-600 hover:text-black text-sm">Account</a>
       </div>
       <!-- Wiki -->
       <div class="flex flex-col items-center space-y-1">
-        <BookOpenIcon class="h-15 w-15 text-gray-700 mt-20 mx-auto" id="SmallTransform"></BookOpenIcon>
+        <BookOpenIcon class="h-15 w-15 text-gray-700 mt-20 mx-auto small-transform"></BookOpenIcon>
         <a href="/dashboard" class="text-gray-600 hover:text-black text-sm">Wiki</a>
       </div>
     </div>
@@ -96,6 +90,20 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ShoppingCartIcon, UserIcon, MegaphoneIcon, BookOpenIcon } from '@heroicons/vue/24/outline'
+import { onMounted } from 'vue'
+import { ShoppingCartIcon, UserIcon, MegaphoneIcon, BookOpenIcon, ArchiveBoxIcon} from '@heroicons/vue/24/outline'
+import { animate } from "motion";
 
+
+onMounted(() => {
+  const elements = document.querySelectorAll('.small-transform')
+  elements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      animate(el, {scale: [1, 1.2, 1], rotate: [0, 10, 0]}, {
+        duration: 0.5,
+        easing: "ease-in-out"
+      })
+    })
+  })
+})
 </script>
